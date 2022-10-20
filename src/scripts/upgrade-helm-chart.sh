@@ -45,4 +45,4 @@ CMD=("helm upgrade --install ${ORB_PARAM_RELEASE_NAME} ${ORB_PARAM_CHART} $@")
 
 echo "${CMD[@]}"
 
-eval "${CMD[@]}"
+eval "${CMD[@]}" || exit 1
