@@ -1,0 +1,135 @@
+description: |
+  Upgrades an existing helm chart
+  Requirements: helm should be installed on the cluster
+  and kubeconfig should be configured to connect to the cluster.
+
+parameters:
+  chart:
+    description: |
+      Specify for upgrade a chart reference (e.g. stable/mariadb),
+      or a path to a packaged chart (e.g. ./nginx-1.2.3.tgz),
+      or a path to an unpacked chart directory (e.g. ./nginx)
+      or an absolute URL (e.g. https://example.com/charts/nginx-1.2.3.tgz)
+    type: string
+    default: ""
+  add-repo:
+    description: |
+      The url for the helm chart repository used as part of helm repo add
+      command
+    type: string
+  release-name:
+    description: |
+      Specify a name for the release.
+    type: string
+    default: ""
+  namespace:
+    description: |
+      The kubernetes namespace that should be used.
+    type: string
+    default: ""
+  wait:
+    description: |
+      Whether to wait for the installation to be complete.
+    type: boolean
+    default: true
+  timeout:
+    description: |
+      If timeout is reached, the release will be marked as FAILED.
+    type: string
+    default: ""
+  no-hooks:
+    description: |
+      This skips running hooks for the command
+    type: boolean
+    default: false
+  devel:
+    description: |
+      Use development versions, too. Equivalent to version '>0.0.0-0'. If --version is set, this is ignored.
+    type: string
+    default: ""
+  dry-run:
+    description: |
+      simulate an upgrade
+    type: boolean
+    default: false
+  force:
+    description: |
+      Use development versions, too. Equivalent to version '>0.0.0-0'. If --version is set, this is ignored.
+    type: boolean
+    default: false
+  reset-values:
+    description: |
+      when upgrading, reset the values to the ones built into the chart
+    type: boolean
+    default: false
+  reuse-values:
+    description: |
+      when upgrading, reuse the last release's values and merge in any overrides from the command line via --set and -f. If '--reset-values' is specified, this is ignored.
+    type: boolean
+    default: false
+  values:
+    description: |
+      specify values in a YAML file or a URL
+    type: string
+    default: ""
+  version:
+    description: |
+      specify the exact chart version to use. If this is not specified, the latest version is used
+    type: string
+    default: ""
+  recreate-pods:
+    description: |
+      performs pods restart for the resource if applicable
+    type: boolean
+    default: false
+  values-to-override:
+    description: |
+      Override values in a chart using the --set flag of the helm upgrade
+      command. Format: key1=val1,key2=val2
+    type: string
+    default: ""
+  update-repositories:
+    description: |
+      Choose to update repositories by running helm repo update.
+    type: boolean
+    default: true
+  helm-version:
+    type: string
+    default: "v3.8.2"
+    description: the helm client version to install. e.g. v3.0.0
+  no-output-timeout:
+    description: |
+      Elapsed time that the helm command can run on CircleCI without output.
+      The string is a decimal with unit suffix, such as “20m”, “1.25h”, “5s”
+    type: string
+    default: "30m"
+  atomic:
+    description: |
+      if set, upgrade process rolls back changes made in case of failed upgrade.
+      The --wait flag will be set automatically if --atomic is used
+    type: boolean
+    default: false
+steps:
+  - install-helm-client:
+      version: << parameters.helm-version >>
+  - run:
+      name: Upgrade, update, or install chart
+      environment:
+        TIMEOUT: << parameters.timeout >>
+        ATOMIC: << parameters.atomic >>
+        ORB_PARAM_WAIT: << parameters.wait >>
+        NO_HOOKS: << parameters.no-hooks >>
+        RECREATE_PODS: << parameters.recreate-pods >>
+        ORB_PARAM_NAMESPACE: << parameters.namespace >>
+        DEVEL: << parameters.devel >>
+        DRY_RUN: << parameters.dry-run >>
+        RESET_VALUES: << parameters.reset-values >>
+        REUSE_VALUES: << parameters.reuse-values >>
+        VALUES: << parameters.values >>
+        VERSION: << parameters.version >>
+        VALUES_TO_OVERRIDE: << parameters.values-to-override >>
+        ORB_PARAM_CHART: << parameters.chart >>
+        ORB_PARAM_RELEASE_NAME: << parameters.release-name >>
+        ORB_PARAM_REPO: << parameters.add-repo >>
+      command: <<include(scripts/upgrade-helm-chart.sh)>>
+      no_output_timeout: << parameters.no-output-timeout >>
