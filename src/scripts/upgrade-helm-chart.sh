@@ -17,7 +17,7 @@ if [ "${ORB_PARAM_WAIT}" == "true" ]; then
 	set -- "$@" --wait
 fi
 if [ -n "${DEVEL}" ]; then
-	set -- "$@" --devel "${DEVEL}"
+	set -- "$@" --devel "$(eval "${DEVEL}")"
 fi
 if [ "${DRY_RUN}" == "true" ]; then
 	set -- "$@" --dry-run
@@ -29,10 +29,10 @@ if [ "${REUSE_VALUES}" == "true" ]; then
 	set -- "$@" --reuse-values
 fi
 if [ -n "${VALUES}" ]; then
-	set -- "$@" --values "$(eval ${VALUES})"
+	set -- "$@" --values "$(eval "${VALUES}")"
 fi
 if [ -n "${VALUES_TO_OVERRIDE}" ]; then
-	set -- "$@" --set "$(eval ${VALUES_TO_OVERRIDE})"
+	set -- "$@" --set "$(eval "${VALUES_TO_OVERRIDE}")"
 fi
 if [ -n "${VERSION}" ]; then
 	set -- "$@" --version="${VERSION}"
