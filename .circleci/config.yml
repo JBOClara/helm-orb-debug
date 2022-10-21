@@ -21,12 +21,13 @@ workflows:
           exclude: SC2148,SC2038,SC2086,SC2002,SC2016
           filters: *filters
       - orb-tools/publish:
-          orb-name: daysofwonder/helm-debug
+          orb-name: dow/helm-orb-debug
           vcs-type: << pipeline.project.type >>
           requires:
             [orb-tools/lint, orb-tools/review, orb-tools/pack, shellcheck/check]
           # Use a context to hold your publishing token.
           github-token: GHI_TOKEN
+          circleci-token: ORB_PARAM_ORB_PUB_TOKEN
           context: orb-publisher
           filters: *filters
       # Triggers the next workflow in the Orb Development Kit.

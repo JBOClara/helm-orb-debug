@@ -1,44 +1,48 @@
 if [ -n "${ORB_PARAM_NAMESPACE}" ]; then
-  set -- "$@" --namespace="${ORB_PARAM_NAMESPACE}"
+	set -- "$@" --namespace="${ORB_PARAM_NAMESPACE}"
 fi
 if [ -n "${TIMEOUT}" ]; then
-  set -- "$@" --timeout "${TIMEOUT}"
+	set -- "$@" --timeout "${TIMEOUT}"
 fi
 if [ -n "${NO_HOOKS}" ]; then
-  set -- "$@" --no-hooks="${NO_HOOKS}"
+	set -- "$@" --no-hooks="${NO_HOOKS}"
 fi
-if [ "${RECREATE_PODS}"  == "true" ]; then
-  set -- "$@" --recreate-pods
+if [ "${RECREATE_PODS}" == "true" ]; then
+	set -- "$@" --recreate-pods
 fi
 if [ "${ATOMIC}" == "true" ]; then
-  set -- "$@" --atomic
+	set -- "$@" --atomic
 fi
 if [ "${ORB_PARAM_WAIT}" == "true" ]; then
-  set -- "$@" --wait
+	set -- "$@" --wait
 fi
 if [ -n "${DEVEL}" ]; then
-  set -- "$@" --devel "${DEVEL}"
+	set -- "$@" --devel "${DEVEL}"
 fi
 if [ "${DRY_RUN}" == "true" ]; then
-  set -- "$@" --dry-run
+	set -- "$@" --dry-run
 fi
 if [ "${RESET_VALUES}" == "true" ]; then
-  set -- "$@" --reset-values
+	set -- "$@" --reset-values
 fi
 if [ "${REUSE_VALUES}" == "true" ]; then
-  set -- "$@" --reuse-values
+	set -- "$@" --reuse-values
 fi
 if [ -n "${VALUES}" ]; then
-  set -- "$@" --values "$(eval ${VALUES})"
+	set -- "$@" --values "$(eval ${VALUES})"
 fi
 if [ -n "${VALUES_TO_OVERRIDE}" ]; then
-  set -- "$@" --set "$(eval ${VALUES_TO_OVERRIDE})"
+	set -- "$@" --set "$(eval ${VALUES_TO_OVERRIDE})"
 fi
 if [ -n "${VERSION}" ]; then
-  set -- "$@" --version="${VERSION}"
+	set -- "$@" --version="${VERSION}"
 fi
 
 helm repo add "${ORB_PARAM_RELEASE_NAME}" "${ORB_PARAM_REPO}"
 helm repo update
 
-helm upgrade --install "${ORB_PARAM_RELEASE_NAME}" "${ORB_PARAM_CHART}" "$@"
+CMD=("helm upgrade --install ${ORB_PARAM_RELEASE_NAME} ${ORB_PARAM_CHART} $@")
+
+echo "${CMD[@]}"
+
+"${CMD[@]}" || exit 1
