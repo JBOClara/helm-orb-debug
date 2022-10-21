@@ -29,6 +29,7 @@ workflows:
           github-token: GHI_TOKEN
           circleci-token: ORB_PARAM_ORB_PUB_TOKEN
           context: orb-publisher
+          pub-type: production
           filters: *filters
       # Triggers the next workflow in the Orb Development Kit.
       - orb-tools/continue:
