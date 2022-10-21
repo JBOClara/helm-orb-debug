@@ -164,7 +164,7 @@ workflows:
       - orb-tools/publish:
           orb-name: dow/helm-orb-debug
           vcs-type: << pipeline.project.type >>
-          pub-type: production
+          pub-type: dev
           requires:
             - orb-tools/lint
             - orb-tools/review
