@@ -3,7 +3,7 @@ orbs:
   aws-eks: circleci/aws-eks@2.2.0
   cli: circleci/circleci-cli@0.1.9
   kubernetes: circleci/kubernetes@1.3.1
-  helm-debug: daysofwonder/helm-debug@dev:<<pipeline.git.revision>>
+  helm-debug: dow/helm-debug@dev:<<pipeline.git.revision>>
   orb-tools: circleci/orb-tools@11.4.1
   queue: eddiewebb/queue@1.7.0
 
@@ -162,7 +162,7 @@ workflows:
       - orb-tools/review:
           filters: *filters
       - orb-tools/publish:
-          orb-name: daysofwonder/helm-debug
+          orb-name: dow/helm-debug
           vcs-type: << pipeline.project.type >>
           pub-type: production
           requires:
