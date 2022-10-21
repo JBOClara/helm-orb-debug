@@ -1,4 +1,6 @@
-# helm Orb [![CircleCI status](https://circleci.com/gh/CircleCI-Public/helm-orb-debug.svg "CircleCI status")](https://circleci.com/gh/CircleCI-Public/helm-orb-debug) [![CircleCI Orb Version](https://img.shields.io/badge/endpoint.svg?url=https://badges.circleci.io/orb/circleci/helm)](https://circleci.com/developer/orbs/orb/circleci/helm) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/CircleCI-Public/helm-orb-debug/blob/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+# helm Orb [![CircleCI Status](https://dl.circleci.com/status-badge/img/gh/daysofwonder/helm-orb-debug/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/daysofwonder/helm-orb-debug/tree/master) [![CircleCI Orb Version](https://img.shields.io/badge/endpoint.svg?url=https://badges.circleci.io/orb/circleci/helm)](https://circleci.com/developer/orbs/orb/circleci/helm) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/CircleCI-Public/helm-orb-debug/blob/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+
+
 
 A CircleCI Orb to simplify deployments to Kubernetes using Helm.
 
