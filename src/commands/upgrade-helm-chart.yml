@@ -131,6 +131,5 @@ steps:
         ORB_PARAM_CHART: << parameters.chart >>
         ORB_PARAM_RELEASE_NAME: << parameters.release-name >>
         ORB_PARAM_REPO: << parameters.add-repo >>
-        BASH_ENV: /etc/profile
       command: <<include(scripts/upgrade-helm-chart.sh)>>
       no_output_timeout: << parameters.no-output-timeout >>
