@@ -1,5 +1,3 @@
-cat $BASH_ENV
-
 if command -v helm &> /dev/null; then
     echo "helm is already installed"
     exit 0
