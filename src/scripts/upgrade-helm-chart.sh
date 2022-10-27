@@ -37,7 +37,7 @@ if [ -n "${VALUES_TO_OVERRIDE}" ]; then
 	set -- "$@" --set "$(eval "${VALUES_TO_OVERRIDE}")"
 fi
 if [ -n "${VERSION}" ]; then
-	set -- "$@" --version="${VERSION}"
+	set -- "$@" --version="$(eval "${VERSION}")"
 fi
 
 helm repo add "${ORB_PARAM_RELEASE_NAME}" "${ORB_PARAM_REPO}"
