@@ -1,3 +1,5 @@
+#!/bin/bash -eo pipefail
+
 if command -v helm &> /dev/null; then
     echo "helm is already installed"
     exit 0
