@@ -1,5 +1,3 @@
-#!/bin/bash -eo pipefail
-
 set +e
 
 if command -v helm &> /dev/null; then
