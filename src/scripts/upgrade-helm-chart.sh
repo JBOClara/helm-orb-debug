@@ -19,7 +19,7 @@ if [ "${ORB_PARAM_WAIT}" == "true" ]; then
 	set -- "$@" --wait
 fi
 if [ -n "${DEVEL}" ]; then
-	set -- "$@" --devel "$(eval "${DEVEL}")"
+	set -- "$@" --devel
 fi
 if [ "${DRY_RUN}" == "true" ]; then
 	set -- "$@" --dry-run
