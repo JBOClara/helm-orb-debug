@@ -4,8 +4,8 @@ fi
 if [[ -n "${TIMEOUT}" ]]; then
 	set -- "$@" --timeout "${TIMEOUT}"
 fi
-if [[ -n "${NO_HOOKS}" ]]; then
-	set -- "$@" --no-hooks="${NO_HOOKS}"
+if [[ "${NO_HOOKS}" == true ]]; then
+	set -- "$@" --no-hooks
 fi
 if [[ "${ATOMIC}" == true ]]; then
 	set -- "$@" --atomic
