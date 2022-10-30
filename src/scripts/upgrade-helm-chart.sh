@@ -1,3 +1,5 @@
+set -euox
+set
 if [[ -n "${ORB_PARAM_NAMESPACE}" ]]; then
 	set -- "$@" --namespace="${ORB_PARAM_NAMESPACE}"
 fi
