@@ -6,6 +6,9 @@ fi
 if [ -n "${TIMEOUT}" ]; then
 	set -- "$@" --timeout "${TIMEOUT}"
 fi
+if [ -n "${NO_HOOKS}" ]; then
+	set -- "$@" --no-hooks="${NO_HOOKS}"
+fi
 if [ "${RECREATE_PODS}" == "true" ]; then
 	set -- "$@" --recreate-pods
 fi
