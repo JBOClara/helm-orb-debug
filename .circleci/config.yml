@@ -1,8 +1,8 @@
 version: 2.1
 setup: true
 orbs:
-  orb-tools: circleci/orb-tools@11.1
-  shellcheck: circleci/shellcheck@3.1
+  orb-tools: circleci/orb-tools@11.6.1
+  shellcheck: circleci/shellcheck@3.1.2
 
 filters: &filters
   tags:
@@ -27,7 +27,6 @@ workflows:
             [orb-tools/lint, orb-tools/review, orb-tools/pack, shellcheck/check]
           # Use a context to hold your publishing token.
           github-token: GHI_TOKEN
-          circleci-token: ORB_PARAM_ORB_PUB_TOKEN
           context: orb-publisher
           pub-type: production
           filters: *filters
